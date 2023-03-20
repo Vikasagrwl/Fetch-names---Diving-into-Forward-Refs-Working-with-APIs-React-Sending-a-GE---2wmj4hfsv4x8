@@ -15,6 +15,13 @@ import { useEffect , useState } from 'react';
 6. Kurtis Weissnat
  */
 
+const getData = ()=>{
+  const apiCall = fetch("https://jsonplaceholder.typicode.com/users");
+  const result = apiCall.then(res => res.json());
+  return result;
+}
+
+
 function App() {
 
   const [data, setData] = useState([]);
@@ -22,6 +29,10 @@ function App() {
   /**
    * fetch data from api on mount. 
    */
+
+  useEffect(()=>{
+    getData().then(obj=> setData(obj));
+  }, []);
 
   return (
   <div className='App'>
